@@ -12,8 +12,11 @@ class MyApp(ShowBase):
 
         self.accept('escape', self.quit)
 
-        def quit(self):
-            sys.exit()
+
+
+
+
+
 
         self.parent = self.loader.loadModel("./Assets/cube")
 
@@ -29,6 +32,14 @@ class MyApp(ShowBase):
             self.placeholder2.setColorScale(red, green, blue, 1.0)
             self.parent.instanceTo(self.placeholder2)
             x = x + 0.6
+
+    def quit(self):
+        sys.exit()
+
+
+
+
+     
 
 
 app = MyApp()
