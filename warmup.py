@@ -11,8 +11,19 @@ class MyApp(ShowBase):
         self.fighter.setColorScale(1.0,0.0,0.0,1.0)
 
         self.accept('escape', self.quit)
+
         self.accept('arrow_left', self.negativeX, [1])
         self.accept('arrow_left-up', self.negativeX, [0])
+
+        self.accept('arrow_right', self.positiveX, [1])
+        self.accept('arrow_right-up', self.positiveX, [0])
+
+        self.accept('arrow_down', self.negativeY, [1])
+        self.accept('arrow_down-up', self.negativeY, [0])
+
+        self.accept('arrow_up', self.upwardsY, [1])
+        self.accept('arrow_up-up', self.upwardsY, [0])
+        
         self.base = self
 
         self.base.disableMouse()
@@ -56,7 +67,37 @@ class MyApp(ShowBase):
 
             
 
+    def moveUpwardsY(self, task):
+        self.fighter.setY(self.fighter, 1)
+        return task.cont # Sets the task to continue the next. game cycle
 
+    def upwardsY(self, keyDown):
+        if(keyDown):
+            self.taskMgr.add(self.moveUpwardsY, 'moveUpwardsY')
+        else:
+            self.taskMgr.remove('moveUpwardsY')
+
+
+    def movePositiveX(self, task):
+        self.fighter.setX(self.fighter, 1)
+        return task.cont # Sets the task to continue the next. game cycle
+
+    def positiveX(self, keyDown):
+        if(keyDown):
+            self.taskMgr.add(self.movePositiveX, 'movePositiveX')
+        else:
+            self.taskMgr.remove('movePositiveX')
+
+
+    def moveDownY(self, task):
+        self.fighter.setY(self.fighter, -1)
+        return task.cont # Sets the task to continue the next. game cycle
+
+    def negativeY(self, keyDown):
+        if(keyDown):
+            self.taskMgr.add(self.moveDownY, 'moveDownY')
+        else:
+            self.taskMgr.remove('moveDownY')
 
 
 
